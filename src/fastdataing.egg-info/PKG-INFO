@@ -6,6 +6,9 @@ Home-page: https://github.com/eastsheng/fastdataing
 Author: CHENDONGSHENG
 Author-email: eastsheng@hotmail.com
 Description-Content-Type: text/markdown
+Requires-Dist: scipy
+Requires-Dist: numpy
+Requires-Dist: matplotlib
 
 ### Common fast data processing methods
 

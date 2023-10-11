@@ -43,16 +43,22 @@ def get_files(directory, suffix):
 			files.append(filename)
 	return files
 
+def add_fig(figsize=(10,8)):
+	"""
+	add a canvas, return ax
+	"""
+	plt.rc('font', family='Times New Roman', size=22)
+	fig = plt.figure(figsize=figsize)
+	ax = fig.add_subplot(1,1,1)
+	return ax
 
-def plot_fig(x,y,
-	figsize=(10,8),label="PotEng",linewidth=1,
+def plot_fig(ax,x,y,label="PotEng",linewidth=1,
 	factors=[199,3],color="r",savefig="temp.png",
 	xlabel="X axis",ylabel="Y axis",fontweight="bold",
 	dpi=300,transparent=True):
 	"""
 	plot fig
 	x,y: x,y
-	figsize: figsize=(10,8)
 	label: label="PotEng",
 	linewidth: linewidth=1,
 	factors: factors=[199,3],
@@ -64,10 +70,6 @@ def plot_fig(x,y,
 	dpi: dpi=300,
 	transparent: transparent=True)
 	"""
-
-	plt.rc('font', family='Times New Roman', size=22)
-	fig = plt.figure(figsize=figsize)
-	ax = fig.add_subplot(1,1,1)
 	ax.plot(x,y,color=color,linewidth=linewidth,alpha=0.2)	
 	x,y = smooth_SF(x,y,factors=factors)
 	ax.plot(x,y,color=color,label=label,linewidth=linewidth)
@@ -81,4 +83,4 @@ def plot_fig(x,y,
 		plt.savefig(savefig,dpi=dpi,transparent=transparent)
 	else:
 		pass
-	return
+	return ax
