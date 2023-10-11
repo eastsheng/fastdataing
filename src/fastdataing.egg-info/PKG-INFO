@@ -26,8 +26,11 @@ Requires-Dist: matplotlib
 
 ### plot figs
 
-- plot_fig(x,y,
-  	figsize=(10,8),label="PotEng",linewidth=1,
+- add_fig(figsize=(10,8)): 
+  - add a canvas, return ax
+
+- plot_fig(ax,x,y,label="PotEng",linewidth=1,
   	factors=[199,3],color="r",savefig="temp.png",
   	xlabel="X axis",ylabel="Y axis",fontweight="bold",
-  	dpi=300,transparent=True):
+  	dpi=300,transparent=True): 
+  - plot fig
