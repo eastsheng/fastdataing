@@ -11,3 +11,11 @@
 
 - get_files(directory, suffix): 
   - Read files with the same suffix in the folder and save them as a list
+
+### plot figs
+
+- plot_fig(x,y,
+  	figsize=(10,8),label="PotEng",linewidth=1,
+  	factors=[199,3],color="r",savefig="temp.png",
+  	xlabel="X axis",ylabel="Y axis",fontweight="bold",
+  	dpi=300,transparent=True):

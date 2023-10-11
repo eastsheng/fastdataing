@@ -15,7 +15,7 @@ with open("requirements.txt","r") as f:
 
 setup(
 name         = 'fastdataing',
-version      = '1.0.1',
+version      = '1.0.2',
 py_modules   = ['fastdataing'],
 author       = 'CHENDONGSHENG',
 author_email = 'eastsheng@hotmail.com',

@@ -5,6 +5,7 @@ import os
 from scipy.interpolate import make_interp_spline
 from scipy.signal import savgol_filter
 import numpy as np
+import matplotlib.pyplot as plt
 
 def smooth_MIS(x,y,factor=300):
 	"""
@@ -41,3 +42,43 @@ def get_files(directory, suffix):
 		if filename.endswith(suffix):
 			files.append(filename)
 	return files
+
+
+def plot_fig(x,y,
+	figsize=(10,8),label="PotEng",linewidth=1,
+	factors=[199,3],color="r",savefig="temp.png",
+	xlabel="X axis",ylabel="Y axis",fontweight="bold",
+	dpi=300,transparent=True):
+	"""
+	plot fig
+	x,y: x,y
+	figsize: figsize=(10,8)
+	label: label="PotEng",
+	linewidth: linewidth=1,
+	factors: factors=[199,3],
+	color: color="r",
+	savefig: savefig="temp.png",
+	xlabel: xlabel="X axis",
+	ylabel: ylabel="Y axis",
+	fontweight: fontweight="bold",
+	dpi: dpi=300,
+	transparent: transparent=True)
+	"""
+
+	plt.rc('font', family='Times New Roman', size=22)
+	fig = plt.figure(figsize=figsize)
+	ax = fig.add_subplot(1,1,1)
+	ax.plot(x,y,color=color,linewidth=linewidth,alpha=0.2)	
+	x,y = smooth_SF(x,y,factors=factors)
+	ax.plot(x,y,color=color,label=label,linewidth=linewidth)
+	
+	ax.set_xlabel(xlabel,fontweight=fontweight,fontsize=26)
+	ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=26)
+
+	ax.patch.set_alpha(0) 
+	ax.legend(loc="best",ncols=1).get_frame().set_alpha(0)
+	if savefig and savefig != "temp.png":
+		plt.savefig(savefig,dpi=dpi,transparent=transparent)
+	else:
+		pass
+	return
