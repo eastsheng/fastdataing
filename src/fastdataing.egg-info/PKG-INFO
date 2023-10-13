@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: fastdataing
-Version: 1.0.2
+Version: 1.0.3
 Summary: Read themo info from lammps output file or log file
 Home-page: https://github.com/eastsheng/fastdataing
 Author: CHENDONGSHENG

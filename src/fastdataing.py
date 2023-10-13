@@ -7,6 +7,10 @@ from scipy.signal import savgol_filter
 import numpy as np
 import matplotlib.pyplot as plt
 
+def __version__():
+	version = "1.0.3"
+	return version
+
 def smooth_MIS(x,y,factor=300):
 	"""
 	smooth data
@@ -84,3 +88,7 @@ def plot_fig(ax,x,y,label="PotEng",linewidth=1,
 	else:
 		pass
 	return ax
+
+
+if __name__ == "__main__":
+	print(__version__())

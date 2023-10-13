@@ -5,6 +5,7 @@ pip install .
 
 # from distutils.core import setup
 from setuptools import setup, find_packages
+from src.fastdataing import __version__
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -12,10 +13,11 @@ with open("README.md", "r") as f:
 with open("requirements.txt","r") as f:
     required = f.read().splitlines()
 
+version = __version__()
 
 setup(
 name         = 'fastdataing',
-version      = '1.0.2',
+version      = version,
 py_modules   = ['fastdataing'],
 author       = 'CHENDONGSHENG',
 author_email = 'eastsheng@hotmail.com',
