@@ -56,14 +56,14 @@ def add_fig(figsize=(10,8)):
 	ax = fig.add_subplot(1,1,1)
 	return ax
 
-def plot_fig(ax,x,y,label="PotEng",linewidth=1,
+def plot_fig(ax,x,y,label="label",linewidth=1,
 	factors=[199,3],color="r",savefig="temp.png",
 	xlabel="X axis",ylabel="Y axis",fontweight="bold",
 	dpi=300,transparent=True):
 	"""
 	plot fig
 	x,y: x,y
-	label: label="PotEng",
+	label: label="label",
 	linewidth: linewidth=1,
 	factors: factors=[199,3],
 	color: color="r",
@@ -74,9 +74,12 @@ def plot_fig(ax,x,y,label="PotEng",linewidth=1,
 	dpi: dpi=300,
 	transparent: transparent=True)
 	"""
-	ax.plot(x,y,color=color,linewidth=linewidth,alpha=0.2)	
-	x,y = smooth_SF(x,y,factors=factors)
-	ax.plot(x,y,color=color,label=label,linewidth=linewidth)
+	if factors==False:
+		ax.plot(x,y,color=color,label=label,linewidth=linewidth)
+	else:
+		ax.plot(x,y,color=color,linewidth=linewidth,alpha=0.2)
+		x,y = smooth_SF(x,y,factors=factors)
+		ax.plot(x,y,color=color,label=label,linewidth=linewidth)
 	
 	ax.set_xlabel(xlabel,fontweight=fontweight,fontsize=26)
 	ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=26)
