@@ -82,7 +82,7 @@ def add_ax(fig,subplot=(1,1,1)):
 
 
 def plot_fig(ax,x,y,label=False,linewidth=1,
-	factors=False,color="r",savefig="temp.png",
+	factors=False,color="r-",savefig="temp.png",
 	xlabel=False,ylabel=False,fontweight="bold",alpha=1.0,
 	dpi=300,transparent=True,fontsize=26):
 	"""
@@ -102,15 +102,15 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 	"""
 	if factors==False:
 		if label == False:
-			ax.plot(x,y,color=color,linewidth=linewidth,alpha=alpha)
+			ax.plot(x,y,color,linewidth=linewidth,alpha=alpha)
 		else:
-			ax.plot(x,y,color=color,label=label,linewidth=linewidth,alpha=alpha)
+			ax.plot(x,y,color,label=label,linewidth=linewidth,alpha=alpha)
 	else:
 		x,y = smooth_SF(x,y,factors=factors)
 		if label == False:
-			ax.plot(x,y,color=color,linewidth=linewidth,alpha=alpha)
+			ax.plot(x,y,color,linewidth=linewidth,alpha=alpha)
 		else:
-			ax.plot(x,y,color=color,label=label,linewidth=linewidth,alpha=alpha)
+			ax.plot(x,y,color,label=label,linewidth=linewidth,alpha=alpha)
 	if xlabel==False:
 		pass
 	else:
