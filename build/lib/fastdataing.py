@@ -62,10 +62,24 @@ def add_fig(figsize=(10,8),size=22):
 	size=22
 	"""
 	plt.rc('font', family='Times New Roman', size=size)
+	plt.rcParams['xtick.direction'] = 'in'
+	plt.rcParams['ytick.direction'] = 'in'
 	fig = plt.figure(figsize=figsize)
-	ax = fig.add_subplot(1,1,1)
 	print("\n>>> add a fig successfully !\n")
+	return fig
+
+def add_ax(fig,subplot=(1,1,1)):
+	"""
+	add a ax
+	fig: a  figure
+	subplot=(1,1,1)
+	"""
+	if isinstance(subplot, int):
+		subplot = (subplot,)
+		subplot = tuple(int(ch) for ch in str(subplot[0]))
+	ax = fig.add_subplot(subplot[0],subplot[1],subplot[2])
 	return ax
+
 
 def plot_fig(ax,x,y,label=False,linewidth=1,
 	factors=False,color="r",savefig="temp.png",
