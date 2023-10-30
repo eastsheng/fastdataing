@@ -83,7 +83,7 @@ def add_ax(fig,subplot=(1,1,1)):
 
 def plot_fig(ax,x,y,label=False,linewidth=1,
 	factors=False,color="r-",savefig="temp.png",
-	xlabel=False,ylabel=False,fontweight="bold",alpha=1.0,
+	xlabel=False,ylabel=False,fontweight="bold",alpha=1.0,loc="best",ncols=1,
 	dpi=300,transparent=True,fontsize=26):
 	"""
 	plot fig
@@ -97,6 +97,7 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 	ylabel: ylabel="Y axis",
 	fontweight: fontweight="bold",
 	alpha=1.0,
+	ncols = 1
 	dpi: dpi=300,
 	transparent: transparent=True)
 	"""
@@ -121,7 +122,7 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
 	ax.patch.set_alpha(0) 
-	ax.legend(loc="best",ncols=1).get_frame().set_alpha(0)
+	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
 	if savefig and savefig != "temp.png":
 		plt.savefig(savefig,dpi=dpi,transparent=transparent)
 	else:
