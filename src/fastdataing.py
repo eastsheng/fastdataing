@@ -83,7 +83,7 @@ def add_ax(fig,subplot=(1,1,1)):
 
 def plot_fig(ax,x,y,label=False,linewidth=1,
 	factors=False,color="r-",savefig="temp.png",
-	xlabel=False,ylabel=False,fontweight="bold",alpha=1.0,loc="best",ncols=1,
+	xlabel=False,ylabel=False,fontweight="normal",alpha=1.0,loc="best",ncols=1,
 	dpi=300,transparent=True,fontsize=26):
 	"""
 	plot fig
@@ -95,7 +95,7 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 	savefig: savefig="temp.png",
 	xlabel: xlabel="X axis",
 	ylabel: ylabel="Y axis",
-	fontweight: fontweight="bold",
+	fontweight: fontweight="normal",
 	alpha=1.0,
 	ncols = 1
 	dpi: dpi=300,
