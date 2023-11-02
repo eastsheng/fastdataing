@@ -42,6 +42,39 @@ def smooth_SF(x,y,factors=[5,3]):
 	return x_smooth,y_smooth
 
 
+def cal_solpes(x,y):
+	"""
+	calculating slope
+	x: x axis data
+	y: y axis data
+	"""
+	slopes = []
+
+	for i in range(1, len(x)):
+	    delta_x = x[i] - x[i - 1]
+	    delta_y = y[i] - y[i - 1]
+	    slope = abs(delta_y / delta_x)
+	    slopes.append(slope)
+
+	x_values = x[1:]
+	return 	x_values,slopes
+
+
+def average_xy(x,y,window_size=10):
+	"""
+	average data
+	x: x axis data
+	y: y axis data
+	window_size: window size
+	"""
+	avg_x = []
+	avg_y = []
+	for i in range(0, len(x), window_size):
+	    avg_x.append(sum(x[i:i + window_size]) / window_size)
+	    avg_y.append(sum(y[i:i + window_size]) / window_size)
+	return avg_x, avg_y
+
+
 def get_files(directory, suffix):
 	"""
 	Read files with the same suffix in the folder and save them as a list
@@ -129,6 +162,87 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 		pass
 	print("\n>>> plot a fig successfully !\n")
 	return ax
+
+
+
+def plot_scatter(ax,x,y,s=None,marker="o",color="r",linewidths=1.5,edgecolors='face',label=False,
+	xlabel=False,ylabel=False,fontweight="normal",fontsize=26,alpha=1.0,loc="best",ncols=1):
+	"""
+	plot a scatter fig
+	x,y: x,y
+	s: markersize
+	label: label="label", default label=False
+	linewidth: linewidth=1,
+	marker: marker="o"...
+	color: color="r",
+	edgecolors: 'face',
+	xlabel: xlabel="X axis",
+	ylabel: ylabel="Y axis",
+	fontweight: fontweight="normal",
+	fontsize=26
+	alpha=1.0,
+	loc="best"
+	ncols = 1
+	"""
+	if label == False:
+		ax.scatter(x,y,s=s,marker="o",color=color,alpha=1,linewidths=1.5,edgecolors='face')
+	else:
+		ax.scatter(x,y,s=s,marker="o",color=color,label=label,alpha=1,linewidths=1.5,edgecolors='face')
+	if xlabel==False:
+		pass
+	else:
+		ax.set_xlabel(xlabel,fontweight=fontweight,fontsize=fontsize)
+	if ylabel==False:
+		pass
+	else:
+		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
+
+	ax.patch.set_alpha(0) 
+	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	return
+
+def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor="r",
+	elinewidth=1.5,capsize=5,barsabove=True, capthick=1,label=False,
+	xlabel=False,ylabel=False,fontweight="normal",fontsize=26,alpha=1.0,loc="best",ncols=1):
+	"""
+	plot a scatter fig
+	x,y: x,y
+	yerr: None
+	fmt: "ro--"
+	markersize: markersize
+	markeredgecolor: "r"
+	elinewidth: elinewidth=1.5,
+	capsize: capsize=5
+	barsabove: True,
+	capthick: 1,
+	label: label="label", default label=False
+	xlabel: xlabel="X axis",
+	ylabel: ylabel="Y axis",
+	fontweight: fontweight="normal",
+	fontsize=26
+	alpha=1.0,
+	loc="best"
+	ncols = 1
+	"""
+	if label == False:
+		s1 = ax.errorbar(x,y,yerr=yerr,capsize=capsize,capthick=capthick,alpha=.5,barsabove=barsabove,elinewidth=elinewidth,
+				fmt=fmt,mec=markeredgecolor,markersize=markersize)
+	else:
+		s1 = ax.errorbar(x,y,yerr=yerr,capsize=capsize,capthick=capthick,alpha=.5,barsabove=barsabove,elinewidth=elinewidth,
+				fmt=fmt,mec=markeredgecolor,markersize=markersize,label=label)
+	
+	if xlabel==False:
+		pass
+	else:
+		ax.set_xlabel(xlabel,fontweight=fontweight,fontsize=fontsize)
+	if ylabel==False:
+		pass
+	else:
+		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
+
+	ax.patch.set_alpha(0) 
+	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	return
 
 
 
