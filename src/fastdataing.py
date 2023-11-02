@@ -12,8 +12,34 @@ from tqdm import tqdm
 
 
 def __version__():
-	version = "1.0.3"
+	version = "1.0.4"
 	return version
+
+
+def cal_diff_coeff(t,msd):
+	"""line fitting"""
+	fit=np.polyfit(t,msd,1)
+	fit_fn = np.poly1d(fit)
+	# return slope,x,y
+	slope, x, y = fit[0], t, fit_fn(t)	
+	return slope, x, y
+
+def Einstein_diffusion(x,y,t1,t2):
+	"""
+	x,y: time, msd
+	t1,t2： range of x
+	"""
+	Ans2ms=1e-20*1e9
+	xf,yf = [],[]
+	for i in range(len(x)):
+		if x[i] >= t1 and x[i] <= t2:
+			xf.append(x[i])
+			yf.append(y[i])
+	slope,xf,yf = cal_diff_coeff(xf,yf)
+	diffcoef = slope*Ans2ms/6
+	print("Diffusion coefficient:" ,diffcoef,"(m^2/s)")
+	return diffcoef
+
 
 def smooth_MIS(x,y,factor=300):
 	"""
