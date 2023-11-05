@@ -26,7 +26,7 @@ def cal_diff_coeff(t,msd):
 	slope, x, y = fit[0], t, fit_fn(t)	
 	return slope, x, y
 
-def Einstein_diffusion(x,y,t1,t2):
+def Einstein_diffusion(x,y,t1,t2,color="b",ax=False):
 	"""
 	x,y: time, msd
 	t1,t2： range of x
@@ -40,6 +40,12 @@ def Einstein_diffusion(x,y,t1,t2):
 	slope,xf,yf = cal_diff_coeff(xf,yf)
 	diffcoef = slope*Ans2ms/6
 	print("Diffusion coefficient:" ,diffcoef,"(m^2/s)")
+	if ax:
+		ax.scatter(x,y,s=5,color=color,alpha=0.2)
+		ax.plot(xf,yf,color=color,linewidth=2)
+		ax.set_xlabel('Time (ns)',size=26)
+		ax.set_ylabel('MSD($\mathregular{Å^2}$)',size=26)
+
 	return diffcoef
 
 
@@ -274,6 +280,59 @@ def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor="r",
 
 
 
+def plot_bars(ax,x,height, width=0.8, bottom=None,align='center',color='b',
+	linewidth=0, tick_label=None, label=False,xerr=None, yerr=None,ecolor='black',capsize=0.0,
+	hatch=None,edgecolor=None,
+	xlabel=False,ylabel=False,fontweight="normal",fontsize=26,alpha=1.0,loc="best",ncols=1):
+	"""
+	plot a bars fig
+	x,height: The x coordinates of the bars, The height(s) of the bars.
+	s: markersize
+	width: The width(s) of the bars.
+	bottom: The y coordinate(s) of the bottom side(s) of the bars.
+	align: Alignment of the bars to the x coordinates:
+	color: The colors of the bar faces.
+	edgecolor: The colors of the bar edges.
+	linewidth: Width of the bar edge(s). If 0, don't draw edges.
+	tick_label: The tick labels of the bars. Default: None (Use default numeric labels.)
+	label: label="label", default label=False
+	xerr, yerr: If not None, add horizontal / vertical errorbars to the bar tips.
+	ecolor: The line color of the errorbars.	
+	capsize: The length of the error bar caps in points.
+	hatch: {'/', '\', '|', '-', '+', 'x', 'o', 'O', '.', '*'}
+	error_kw: 
+	xlabel: xlabel="X axis",
+	ylabel: ylabel="Y axis",
+	fontweight: fontweight="normal",
+	fontsize=26
+	alpha=1.0,
+	loc="best"
+	ncols = 1
+	"""
+	if label == False:
+		ax.bar(x,height,width=width,bottom=None,align=align,color=color,linewidth=linewidth,
+			tick_label=None,xerr=xerr, yerr=yerr,ecolor=ecolor,capsize=capsize,hatch=hatch,
+			edgecolor=edgecolor)
+	else:
+		ax.bar(x,height,width=width,bottom=None,align=align,color=color,linewidth=linewidth,
+			tick_label=None,xerr=xerr, yerr=yerr,ecolor=ecolor,capsize=capsize,hatch=hatch,
+			edgecolor=edgecolor,label=label)
+	if xlabel==False:
+		pass
+	else:
+		ax.set_xlabel(xlabel,fontweight=fontweight,fontsize=fontsize)
+	if ylabel==False:
+		pass
+	else:
+		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
+
+	ax.patch.set_alpha(0) 
+	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	return
+
+
+
+
 class Figure(object):
 	"""Figure class: picture processing"""
 	def __init__(self,):
@@ -390,3 +449,4 @@ if __name__ == "__main__":
 	# f.fig2binary("toux.jpg","toux_1.jpg")
 	# f.binary2dxf("toux_1.jpg","toux_1.dxf")
 	# f.fig2ico("toux.jpg","toux.ico")
+
