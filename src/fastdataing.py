@@ -235,7 +235,7 @@ def plot_scatter(ax,x,y,s=None,marker="o",color="r",linewidths=1.5,edgecolors='f
 	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
 	return
 
-def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor="r",
+def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,
 	elinewidth=1.5,capsize=5,barsabove=True, capthick=1,label=False,
 	xlabel=False,ylabel=False,fontweight="normal",fontsize=26,alpha=1.0,loc="best",ncols=1):
 	"""
