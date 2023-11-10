@@ -129,6 +129,7 @@ def add_fig(figsize=(10,8),size=22):
 	size=22
 	"""
 	plt.rc('font', family='Times New Roman', size=size)
+	plt.rcParams['mathtext.fontset'] = 'stix'
 	plt.rcParams['xtick.direction'] = 'in'
 	plt.rcParams['ytick.direction'] = 'in'
 	fig = plt.figure(figsize=figsize)
