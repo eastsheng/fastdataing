@@ -2,5 +2,5 @@ numpy
 matplotlib
 scipy
 Pillow
-ezdxf
+ezdxf==1.0.3
 tqdm

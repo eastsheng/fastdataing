@@ -10,7 +10,7 @@ Requires-Dist: numpy
 Requires-Dist: matplotlib
 Requires-Dist: scipy
 Requires-Dist: Pillow
-Requires-Dist: ezdxf
+Requires-Dist: ezdxf==1.0.3
 Requires-Dist: tqdm
 
 ### Common fast data processing methods
