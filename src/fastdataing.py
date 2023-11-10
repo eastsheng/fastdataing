@@ -419,9 +419,7 @@ class Papers(object):
 	        a = r"/doi(.*?)\n"
 	        doi_string = re.findall(a,text)[0]
 	        doi = doi_string.strip().split("/")
-	        print(doi)
 	        doi = doi[-2]+"/"+doi[-1]
-
 	    except:
 	        a = r"DOI(.*?)\n"
 	        doi_string = re.findall(a,text)[0]
