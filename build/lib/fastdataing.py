@@ -416,10 +416,12 @@ class Papers(object):
 	    text = self.read_pdf(file_path,page_num=0)
 
 	    try:
-	        a = r"doi(.*?)\n"
+	        a = r"/doi(.*?)\n"
 	        doi_string = re.findall(a,text)[0]
 	        doi = doi_string.strip().split("/")
+	        print(doi)
 	        doi = doi[-2]+"/"+doi[-1]
+
 	    except:
 	        a = r"DOI(.*?)\n"
 	        doi_string = re.findall(a,text)[0]
