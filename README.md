@@ -1,5 +1,7 @@
 ### Common fast data processing methods
 
+> A collection of frequently employed functions!
+
 #### Smooth
 
 - smooth_MIS(x,y,factor=300): 

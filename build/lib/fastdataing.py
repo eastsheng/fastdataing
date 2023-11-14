@@ -21,13 +21,8 @@ def __version__():
 
 def print_version():
 	version = __version__()
-	print("----------------------------------------------")
-	print("--------                              --------")
-	print("--------     🅵🅰🆂🆃🅳🅰🆃🅰🅸🅽🅶     --------")
-	print("--------                              --------")
-	print("----------------------------------------------")
-	print("@𝒇𝒂𝒔𝒕𝒅𝒂𝒕𝒂𝒊𝒏𝒈-"+version)
-	print("\n")
+	print("𝒇𝒂𝒔𝒕𝒅𝒂𝒕𝒂𝒊𝒏𝒈-"+version)
+	print("\t>>> A collection of frequently employed functions!")
 	return
 
 def cal_diff_coeff(t,msd):
