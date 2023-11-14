@@ -12,6 +12,8 @@ Requires-Dist: scipy
 Requires-Dist: Pillow
 Requires-Dist: ezdxf==1.0.3
 Requires-Dist: tqdm
+Requires-Dist: requests
+Requires-Dist: PyPDF2
 
 ### Common fast data processing methods
 
@@ -45,3 +47,5 @@ Requires-Dist: tqdm
   - convert fig to binary image
 - binary2dxf(binary_image_file,dxf_file=False):
   - convert binary to dxf format
+
+### ...

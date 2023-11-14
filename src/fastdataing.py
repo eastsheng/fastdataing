@@ -12,11 +12,23 @@ from tqdm import tqdm
 import re
 import requests
 import PyPDF2
+from scipy import ndimage
+
 
 def __version__():
 	version = "1.0.4"
 	return version
 
+def print_version():
+	version = __version__()
+	print("----------------------------------------------")
+	print("--------                              --------")
+	print("--------     🅵🅰🆂🆃🅳🅰🆃🅰🅸🅽🅶     --------")
+	print("--------                              --------")
+	print("----------------------------------------------")
+	print("@𝒇𝒂𝒔𝒕𝒅𝒂𝒕𝒂𝒊𝒏𝒈-"+version)
+	print("\n")
+	return
 
 def cal_diff_coeff(t,msd):
 	"""line fitting"""
@@ -393,6 +405,42 @@ class Figure(object):
 		return
 
 
+	def figZoom(self,picture,nzoom,zoom_picture=False,transparent=True):
+		"""
+		zoom a picture
+		picture: a picture file
+		nzoom: times of zoom
+		zoom_picture: new zoomed picture
+		transparent: transparent
+		"""
+		fig = add_fig(figsize=(6,6))
+		ax = add_ax(fig,subplot=(111))
+
+		image = Image.open(picture)
+		fig_array = np.array(image)
+		data0 = fig_array[:,:,0]
+		data1 = fig_array[:,:,1]
+		data2 = fig_array[:,:,2]
+		zoom_array0 = ndimage.zoom(data0, nzoom, order=3)
+		zoom_array1 = ndimage.zoom(data1, nzoom, order=3)
+		zoom_array2 = ndimage.zoom(data2, nzoom, order=3)
+		zoom_array = np.stack([zoom_array0,zoom_array1,zoom_array2],axis=2)
+		ax.imshow(zoom_array,vmin=0, vmax=255)
+		ax.set_xticks([])
+		ax.set_yticks([])
+		ax.set_axis_off()
+		ax.patch.set_alpha(0) 
+
+		if zoom_picture:
+			plt.savefig(zoom_picture, dpi=300,transparent=transparent)
+		else:
+			plt.savefig(picture.split(".")[0]+"_zoom.png", dpi=300,
+				transparent=transparent)
+		
+		plt.show()
+		return
+
+
 
 class Papers(object):
 
@@ -444,10 +492,11 @@ class Papers(object):
 
 
 if __name__ == "__main__":
-	print(__version__())
+	print_version()
 
 	# f = Figure()
 	# f.fig2binary("toux.jpg","toux_1.jpg")
 	# f.binary2dxf("toux_1.jpg","toux_1.dxf")
 	# f.fig2ico("toux.jpg","toux.ico")
+	# f.figZoom("toux_zoom.png",nzoom=5,)
 

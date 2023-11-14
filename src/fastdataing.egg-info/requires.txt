@@ -4,3 +4,5 @@ scipy
 Pillow
 ezdxf==1.0.3
 tqdm
+requests
+PyPDF2
