@@ -13,6 +13,8 @@ import re
 import requests
 import PyPDF2
 from scipy import ndimage
+from reportlab.pdfgen import canvas
+import time
 
 
 def __version__():
@@ -24,6 +26,18 @@ def print_version():
 	print("𝒇𝒂𝒔𝒕𝒅𝒂𝒕𝒂𝒊𝒏𝒈-"+version)
 	print("\t>>> A collection of frequently employed functions!")
 	return
+
+def print_line(func):
+    
+    def wrapper(*args, **kwargs):
+        print(21*"-"," Program Start ",21*"-")
+        start_time = time.time()
+        func(*args, **kwargs)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(20*"-","Run time:",round(elapsed_time,2),"s ",20*"-")
+    return wrapper
+
 
 def cal_diff_coeff(t,msd):
 	"""line fitting"""
@@ -434,6 +448,32 @@ class Figure(object):
 		
 		plt.show()
 		return
+
+
+	@print_line
+	def img2pdf(self,pdf_filename,folder_path="./",suffix="png"):
+	    """
+	    convert images to pdf
+	    Parameters:
+	    - folder_path: folder path,default "./", the images in folder path should like 0.png ... 10.png ... n.png
+	    - suffix: suffix of image file, default="png"
+	    """
+	    all_files = os.listdir(folder_path)
+	    image_filenames = [file for file in all_files if file.endswith("png")]
+	    image_filenames = sorted(image_filenames, key=lambda x: int(''.join(filter(str.isdigit, x))))
+
+	    pdf = canvas.Canvas(pdf_filename)
+
+	    for image_filename in tqdm(image_filenames):
+	        img = Image.open(image_filename)
+	        width, height = img.size
+	        pdf.setPageSize((width, height))
+	        pdf.drawImage(image_filename, 0, 0, width, height)
+	        pdf.showPage()
+	    pdf.save()
+
+	    print(f">>> PDF file '{pdf_filename}' created successfully.")
+
 
 
 
