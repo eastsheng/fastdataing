@@ -5,5 +5,5 @@ Pillow==10.1.0
 ezdxf==1.0.3
 tqdm==4.66.1
 requests==2.31.0
-PyPDF2==3.0.1
+PyPDF2==2.12.1
 reportlab==4.0.7
