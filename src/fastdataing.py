@@ -18,7 +18,7 @@ import time
 
 
 def __version__():
-	version = "1.0.4"
+	version = "1.0.5"
 	return version
 
 def print_version():
