@@ -1,9 +1,9 @@
-numpy==1.26.2
-matplotlib==3.8.2
-scipy==1.11.4
+numpy==1.26.1
+matplotlib==3.8.1
+scipy==1.11.3
 Pillow==10.1.0
 ezdxf==1.0.3
 tqdm==4.66.1
 requests==2.31.0
 PyPDF2==2.1.0
-reportlab==4.0.7
+reportlab==4.0.6

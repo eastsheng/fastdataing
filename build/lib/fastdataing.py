@@ -18,7 +18,7 @@ import time
 
 
 def __version__():
-	version = "1.0.4"
+	version = "1.0.5"
 	return version
 
 def print_version():
@@ -143,16 +143,16 @@ def get_files(directory, suffix):
 	print("\n>>> get files successfully !\n")
 	return files
 
-def add_fig(figsize=(10,8),size=22):
+def add_fig(figsize=(10,8),size=22,inout="in",family='Times New Roman',fontset='stix'):
 	"""
 	add a canvas, return ax
 	figsize=(10,8),
 	size=22
 	"""
-	plt.rc('font', family='Times New Roman', size=size)
-	plt.rcParams['mathtext.fontset'] = 'stix'
-	plt.rcParams['xtick.direction'] = 'in'
-	plt.rcParams['ytick.direction'] = 'in'
+	plt.rc('font', family=family, size=size)
+	plt.rcParams['mathtext.fontset'] = fontset
+	plt.rcParams['xtick.direction'] = inout
+	plt.rcParams['ytick.direction'] = inout
 	fig = plt.figure(figsize=figsize)
 	print("\n>>> add a fig successfully !\n")
 	return fig
