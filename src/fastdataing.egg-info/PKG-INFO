@@ -6,15 +6,15 @@ Home-page: https://github.com/eastsheng/fastdataing
 Author: CHENDONGSHENG
 Author-email: eastsheng@hotmail.com
 Description-Content-Type: text/markdown
-Requires-Dist: numpy==1.26.1
-Requires-Dist: matplotlib==3.8.1
-Requires-Dist: scipy==1.11.3
+Requires-Dist: numpy>=1.26.1
+Requires-Dist: matplotlib>=3.8.1
+Requires-Dist: scipy>=1.11.3
 Requires-Dist: Pillow==10.1.0
 Requires-Dist: ezdxf==1.0.3
-Requires-Dist: tqdm==4.66.1
-Requires-Dist: requests==2.31.0
-Requires-Dist: PyPDF2==2.1.0
-Requires-Dist: reportlab==4.0.6
+Requires-Dist: tqdm>=4.66.1
+Requires-Dist: requests>=2.31.0
+Requires-Dist: PyPDF2>=2.1.0
+Requires-Dist: reportlab>=4.0.6
 
 ### Common fast data processing methods
 
