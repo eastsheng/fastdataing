@@ -98,22 +98,36 @@ def smooth_SF(x,y,factors=[5,3]):
 	return x_smooth,y_smooth
 
 
-def cal_solpes(x,y):
+def cal_solpes(x,y,dn=1):
 	"""
 	calculating slope
 	x: x axis data
 	y: y axis data
 	"""
-	slopes = []
+	x_values, slopes = [], []
+	for i in range(len(x)):
+		if i < len(x)-dn:
+			delta_x = x[i+dn] - x[i]
+			delta_y = y[i+dn] - y[i]
+			slope = delta_y / delta_x
+			x_values.append(x[i]+delta_x*0.5)
+			slopes.append(slope)
 
-	for i in range(1, len(x)):
-	    delta_x = x[i] - x[i - 1]
-	    delta_y = y[i] - y[i - 1]
-	    slope = abs(delta_y / delta_x)
-	    slopes.append(slope)
+	return 	x_values, slopes
 
-	x_values = x[1:]
-	return 	x_values,slopes
+def polyfitting(x, y, degree=1,nx=100):
+	"""
+	polyfitting
+	Parameters:
+	x, y: x, y
+	degree: n of poly
+	nx: number of xbin 
+	"""
+	coefficients = np.polyfit(x, y, degree)
+	poly_fit = np.poly1d(coefficients)
+	x_fit = np.linspace(min(x), max(x), nx)
+	y_fit = poly_fit(x_fit)
+	return x_fit, y_fit
 
 
 def average_xy(x,y,window_size=10):
@@ -128,7 +142,7 @@ def average_xy(x,y,window_size=10):
 	for i in range(0, len(x), window_size):
 	    avg_x.append(sum(x[i:i + window_size]) / window_size)
 	    avg_y.append(sum(y[i:i + window_size]) / window_size)
-	return avg_x, avg_y
+	return avg_x[:-1], avg_y[:-1]
 
 
 def get_files(directory, suffix):
@@ -218,6 +232,43 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 	else:
 		pass
 	print("\n>>> plot a fig successfully !\n")
+	return ax
+
+def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=True,
+	fontweight="normal",loc="best",bbox_to_anchor=False,ncols=1,fontsize=26):
+	"""
+	set fig
+	label: label="label", default label=False
+	xlabel: xlabel="X axis",
+	ylabel: ylabel="Y axis",
+	zlabel: zlabel="Z axis" for 3D axis,
+	fontweight: fontweight="normal",
+	loc: "best"
+	ncols = 1
+	fontsize: fontsize = 26
+	"""
+	if xlabel==False:
+		pass
+	else:
+		ax.set_xlabel(xlabel,fontweight=fontweight,fontsize=fontsize)
+	if ylabel==False:
+		pass
+	else:
+		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
+
+	if zlabel==False:
+		pass
+	else:
+		ax.set_ylabel(zlabel,fontweight=fontweight,fontsize=fontsize)
+
+	leg = ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor)
+
+	if transparent:
+
+		ax.patch.set_alpha(0) 
+		leg.get_frame().set_alpha(0)
+	
+	print("\n>>> set a fig successfully !\n")
 	return ax
 
 
