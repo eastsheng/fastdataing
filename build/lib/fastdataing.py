@@ -310,7 +310,7 @@ def plot_scatter(ax,x,y,s=None,marker="o",color="r",linewidths=1.5,edgecolors='f
 	return
 
 def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,
-	elinewidth=1.5,capsize=5,barsabove=True, capthick=1,label=False,
+	elinewidth=1.5,capsize=5,barsabove=True, capthick=1,label=False,linewidth=1,
 	xlabel=False,ylabel=False,fontweight="normal",fontsize=26,alpha=1.0,loc="best",ncols=1):
 	"""
 	plot a scatter fig
@@ -334,10 +334,10 @@ def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,
 	"""
 	if label == False:
 		s1 = ax.errorbar(x,y,yerr=yerr,capsize=capsize,capthick=capthick,alpha=.5,barsabove=barsabove,elinewidth=elinewidth,
-				fmt=fmt,mec=markeredgecolor,markersize=markersize)
+				fmt=fmt,mec=markeredgecolor,markersize=markersize,linewidth=linewidth)
 	else:
 		s1 = ax.errorbar(x,y,yerr=yerr,capsize=capsize,capthick=capthick,alpha=.5,barsabove=barsabove,elinewidth=elinewidth,
-				fmt=fmt,mec=markeredgecolor,markersize=markersize,label=label)
+				fmt=fmt,mec=markeredgecolor,markersize=markersize,linewidth=linewidth,label=label)
 	
 	if xlabel==False:
 		pass
