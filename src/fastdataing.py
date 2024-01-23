@@ -186,7 +186,7 @@ def add_ax(fig,subplot=(1,1,1)):
 
 
 def plot_fig(ax,x,y,label=False,linewidth=1,
-	factors=False,color="r-",savefig="temp.png",bbox_to_anchor=False,
+	factors=False,color="r-",savefig="temp.png",bbox_to_anchor=(0.5, 0.5),
 	xlabel=False,ylabel=False,fontweight="normal",alpha=1.0,loc="best",ncols=1,
 	dpi=300,transparent=True,fontsize=26):
 	"""
