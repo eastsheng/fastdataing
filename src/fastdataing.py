@@ -186,7 +186,7 @@ def add_ax(fig,subplot=(1,1,1)):
 
 
 def plot_fig(ax,x,y,label=False,linewidth=1,
-	factors=False,color="r-",savefig="temp.png",
+	factors=False,color="r-",savefig="temp.png",bbox_to_anchor=False,
 	xlabel=False,ylabel=False,fontweight="normal",alpha=1.0,loc="best",ncols=1,
 	dpi=300,transparent=True,fontsize=26):
 	"""
@@ -226,7 +226,7 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
 	ax.patch.set_alpha(0) 
-	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
 	if savefig and savefig != "temp.png":
 		plt.savefig(savefig,dpi=dpi,transparent=transparent)
 	else:
@@ -273,7 +273,7 @@ def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=Tr
 
 
 
-def plot_scatter(ax,x,y,s=None,marker="o",color="r",linewidths=1.5,edgecolors='face',label=False,
+def plot_scatter(ax,x,y,s=None,marker="o",color="r",linewidths=1.5,edgecolors='face',label=False,bbox_to_anchor=False,
 	xlabel=False,ylabel=False,fontweight="normal",fontsize=26,alpha=1.0,loc="best",ncols=1):
 	"""
 	plot a scatter fig
@@ -306,10 +306,10 @@ def plot_scatter(ax,x,y,s=None,marker="o",color="r",linewidths=1.5,edgecolors='f
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
 	ax.patch.set_alpha(0) 
-	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
 	return
 
-def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,
+def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,bbox_to_anchor=False,
 	elinewidth=1.5,capsize=5,barsabove=True, capthick=1,label=False,linewidth=1,
 	xlabel=False,ylabel=False,fontweight="normal",fontsize=26,alpha=1.0,loc="best",ncols=1):
 	"""
@@ -349,14 +349,14 @@ def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
 	ax.patch.set_alpha(0) 
-	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
 	return
 
 
 
 def plot_bars(ax,x,height, width=0.8, bottom=None,align='center',color='b',
 	linewidth=0, tick_label=None, label=False,xerr=None, yerr=None,ecolor='black',capsize=0.0,
-	hatch=None,edgecolor=None,
+	hatch=None,edgecolor=None,bbox_to_anchor=False,
 	xlabel=False,ylabel=False,fontweight="normal",fontsize=26,alpha=1.0,loc="best",ncols=1):
 	"""
 	plot a bars fig
@@ -401,7 +401,7 @@ def plot_bars(ax,x,height, width=0.8, bottom=None,align='center',color='b',
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
 	ax.patch.set_alpha(0) 
-	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
 	return
 
 
