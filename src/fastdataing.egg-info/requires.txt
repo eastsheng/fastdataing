@@ -1,7 +1,7 @@
 numpy>=1.26.1
 matplotlib>=3.8.1
 scipy>=1.11.3
-Pillow==10.1.0
+Pillow>=10.2.0
 ezdxf==1.0.3
 tqdm>=4.66.1
 requests>=2.31.0

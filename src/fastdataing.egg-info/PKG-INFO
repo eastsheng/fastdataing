@@ -9,7 +9,7 @@ Description-Content-Type: text/markdown
 Requires-Dist: numpy>=1.26.1
 Requires-Dist: matplotlib>=3.8.1
 Requires-Dist: scipy>=1.11.3
-Requires-Dist: Pillow==10.1.0
+Requires-Dist: Pillow>=10.2.0
 Requires-Dist: ezdxf==1.0.3
 Requires-Dist: tqdm>=4.66.1
 Requires-Dist: requests>=2.31.0
