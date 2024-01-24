@@ -186,7 +186,7 @@ def add_ax(fig,subplot=(1,1,1)):
 
 
 def plot_fig(ax,x,y,label=False,linewidth=1,
-	factors=False,color="r-",savefig="temp.png",bbox_to_anchor=(0.5, 0.5),
+	factors=False,color="r-",savefig="temp.png",bbox_to_anchor=False,
 	xlabel=False,ylabel=False,fontweight="normal",alpha=1.0,loc="best",ncols=1,
 	dpi=300,transparent=True,fontsize=26):
 	"""
@@ -225,8 +225,12 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 	else:
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
-	ax.patch.set_alpha(0) 
-	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	ax.patch.set_alpha(0)
+	if bbox_to_anchor:
+		ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	else:
+		ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+
 	if savefig and savefig != "temp.png":
 		plt.savefig(savefig,dpi=dpi,transparent=transparent)
 	else:
@@ -260,8 +264,10 @@ def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=Tr
 		pass
 	else:
 		ax.set_ylabel(zlabel,fontweight=fontweight,fontsize=fontsize)
-
-	leg = ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor)
+	if bbox_to_anchor:
+		leg = ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor)
+	else:
+		leg = ax.legend(loc=loc,ncols=ncols)
 
 	if transparent:
 
@@ -306,7 +312,11 @@ def plot_scatter(ax,x,y,s=None,marker="o",color="r",linewidths=1.5,edgecolors='f
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
 	ax.patch.set_alpha(0) 
-	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	if bbox_to_anchor:
+		ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	else:
+		ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+
 	return
 
 def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,bbox_to_anchor=False,
@@ -349,7 +359,10 @@ def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,bb
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
 	ax.patch.set_alpha(0) 
-	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	if bbox_to_anchor:
+		ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	else:
+		ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
 	return
 
 
@@ -401,7 +414,10 @@ def plot_bars(ax,x,height, width=0.8, bottom=None,align='center',color='b',
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
 	ax.patch.set_alpha(0) 
-	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	if bbox_to_anchor:
+		ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	else:
+		ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
 	return
 
 
