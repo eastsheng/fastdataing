@@ -127,7 +127,7 @@ def polyfitting(x, y, degree=1,nx=100):
 	poly_fit = np.poly1d(coefficients)
 	x_fit = np.linspace(min(x), max(x), nx)
 	y_fit = poly_fit(x_fit)
-	return x_fit, y_fit
+	return x_fit, y_fit, poly_fit
 
 
 def average_xy(x,y,window_size=10):
