@@ -158,7 +158,7 @@ def get_files(directory, suffix):
 	print("\n>>> get files successfully !\n")
 	return files
 
-def add_fig(figsize=(10,8),size=22,inout="in",family='Times New Roman',fontset='stix'):
+def add_fig(figsize=(8,6),size=18,inout="in",family='Times New Roman',fontset='stix'):
 	"""
 	add a canvas, return ax
 	figsize=(10,8),
