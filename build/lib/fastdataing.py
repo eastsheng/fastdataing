@@ -15,7 +15,7 @@ import PyPDF2
 from scipy import ndimage
 from reportlab.pdfgen import canvas
 import time
-
+import functools
 
 def __version__():
 	version = "1.0.5"
@@ -28,16 +28,16 @@ def print_version():
 	return
 
 def print_line(func):
-    
-    def wrapper(*args, **kwargs):
-        print(21*"-"," Program Start ",21*"-")
-        start_time = time.time()
-        results = func(*args, **kwargs)
-        end_time = time.time()
-        elapsed_time = end_time - start_time
-        print(20*"-","Run time:",round(elapsed_time,2),"s ",20*"-")
-        return results
-    return wrapper
+	@functools.wraps(func)
+	def wrapper(*args, **kwargs):
+		print(21*"-"," Program Start ",21*"-")
+		start_time = time.time()
+		results = func(*args, **kwargs)
+		end_time = time.time()
+		elapsed_time = end_time - start_time
+		print(20*"-","Run time:",round(elapsed_time,2),"s ",20*"-")
+		return results
+	return wrapper
 
 
 def cal_diff_coeff(t,msd):
@@ -140,8 +140,8 @@ def average_xy(x,y,window_size=10):
 	avg_x = []
 	avg_y = []
 	for i in range(0, len(x), window_size):
-	    avg_x.append(sum(x[i:i + window_size]) / window_size)
-	    avg_y.append(sum(y[i:i + window_size]) / window_size)
+		avg_x.append(sum(x[i:i + window_size]) / window_size)
+		avg_y.append(sum(y[i:i + window_size]) / window_size)
 	return avg_x[:-1], avg_y[:-1]
 
 
@@ -188,7 +188,7 @@ def add_ax(fig,subplot=(1,1,1)):
 def plot_fig(ax,x,y,label=False,linewidth=1,
 	factors=False,color="r-",savefig="temp.png",bbox_to_anchor=False,
 	xlabel=False,ylabel=False,fontweight="normal",alpha=1.0,loc="best",ncols=1,
-	dpi=300,transparent=True,fontsize=26):
+	dpi=300,transparent=True,fontsize=22):
 	"""
 	plot fig
 	x,y: x,y
@@ -203,7 +203,8 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 	alpha=1.0,
 	ncols = 1
 	dpi: dpi=300,
-	transparent: transparent=True)
+	transparent: transparent=True
+	fontsize: fontsize = 22
 	"""
 	if factors==False:
 		if label == False:
@@ -239,7 +240,7 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 	return ax
 
 def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=True,
-	fontweight="normal",loc="best",bbox_to_anchor=False,ncols=1,fontsize=26):
+	fontweight="normal",loc="best",bbox_to_anchor=False,ncols=1,fontsize=22):
 	"""
 	set fig
 	label: label="label", default label=False
@@ -249,7 +250,7 @@ def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=Tr
 	fontweight: fontweight="normal",
 	loc: "best"
 	ncols = 1
-	fontsize: fontsize = 26
+	fontsize: fontsize = 22
 	"""
 	if xlabel==False:
 		pass
@@ -427,7 +428,7 @@ class Figure(object):
 	"""Figure class: picture processing"""
 	def __init__(self,):
 		super(Figure, self).__init__()
-
+	@print_line
 	def fig2ico(self,png_file,ico_file=False):
 		"""
 		convert png to ico file
@@ -444,7 +445,7 @@ class Figure(object):
 		print("\n>>> png2ico successfully !\n")
 
 		return
-		
+	@print_line
 	def fig2binary(self, fig_file, binary_file=False, threshold=128):
 		"""
 		convert fig to binary image
@@ -459,7 +460,7 @@ class Figure(object):
 		binary_image.save(binary_file)
 		print("\n>>> fig2binary successfully !\n")
 		return binary_image
-
+	@print_line
 	def binary2dxf(self,binary_image_file,dxf_file=False):
 		"""
 		convert binary to dxf format
@@ -481,7 +482,7 @@ class Figure(object):
 		print("\n>>> binary2dxf successfully !\n")
 		return
 
-
+	@print_line
 	def figZoom(self,picture,nzoom,zoom_picture=False,transparent=True):
 		"""
 		zoom a picture
@@ -520,27 +521,27 @@ class Figure(object):
 
 	@print_line
 	def img2pdf(self,pdf_filename,folder_path="./",suffix="png"):
-	    """
-	    convert images to pdf
-	    Parameters:
-	    - folder_path: folder path,default "./", the images in folder path should like 0.png ... 10.png ... n.png
-	    - suffix: suffix of image file, default="png"
-	    """
-	    all_files = os.listdir(folder_path)
-	    image_filenames = [file for file in all_files if file.endswith("png")]
-	    image_filenames = sorted(image_filenames, key=lambda x: int(''.join(filter(str.isdigit, x))))
+		"""
+		convert images to pdf
+		Parameters:
+		- folder_path: folder path,default "./", the images in folder path should like 0.png ... 10.png ... n.png
+		- suffix: suffix of image file, default="png"
+		"""
+		all_files = os.listdir(folder_path)
+		image_filenames = [file for file in all_files if file.endswith("png")]
+		image_filenames = sorted(image_filenames, key=lambda x: int(''.join(filter(str.isdigit, x))))
 
-	    pdf = canvas.Canvas(pdf_filename)
+		pdf = canvas.Canvas(pdf_filename)
 
-	    for image_filename in tqdm(image_filenames):
-	        img = Image.open(image_filename)
-	        width, height = img.size
-	        pdf.setPageSize((width, height))
-	        pdf.drawImage(image_filename, 0, 0, width, height)
-	        pdf.showPage()
-	    pdf.save()
+		for image_filename in tqdm(image_filenames):
+			img = Image.open(image_filename)
+			width, height = img.size
+			pdf.setPageSize((width, height))
+			pdf.drawImage(image_filename, 0, 0, width, height)
+			pdf.showPage()
+		pdf.save()
 
-	    print(f">>> PDF file '{pdf_filename}' created successfully.")
+		print(f">>> PDF file '{pdf_filename}' created successfully.")
 
 
 
@@ -552,45 +553,45 @@ class Papers(object):
 		super(Papers, self).__init__()
 
 	def read_pdf(self,file_path,page_num=0):
-	    with open(file_path, 'rb') as file:
-	        reader = PyPDF2.PdfReader(file)
-	        num_pages = len(reader.pages)
-	        if page_num<=num_pages:
-	            page = reader.pages[page_num]
-	            text = page.extract_text()
-	        else:
-	            print("Warning: Your selected page_num is too much")
-	    return text
+		with open(file_path, 'rb') as file:
+			reader = PyPDF2.PdfReader(file)
+			num_pages = len(reader.pages)
+			if page_num<=num_pages:
+				page = reader.pages[page_num]
+				text = page.extract_text()
+			else:
+				print("Warning: Your selected page_num is too much")
+		return text
 
 
 	def read_pdf_doi(self,file_path):
-	    text = self.read_pdf(file_path,page_num=0)
+		text = self.read_pdf(file_path,page_num=0)
 
-	    try:
-	        a = r"/doi(.*?)\n"
-	        doi_string = re.findall(a,text)[0]
-	        doi = doi_string.strip().split("/")
-	        doi = doi[-2]+"/"+doi[-1]
-	    except:
-	        a = r"DOI(.*?)\n"
-	        doi_string = re.findall(a,text)[0]
-	        doi = doi_string.strip().split("/")
-	        doi = doi[-2]+"/"+doi[-1]
+		try:
+			a = r"/doi(.*?)\n"
+			doi_string = re.findall(a,text)[0]
+			doi = doi_string.strip().split("/")
+			doi = doi[-2]+"/"+doi[-1]
+		except:
+			a = r"DOI(.*?)\n"
+			doi_string = re.findall(a,text)[0]
+			doi = doi_string.strip().split("/")
+			doi = doi[-2]+"/"+doi[-1]
 
-	    return doi
+		return doi
 
 	def read_title(self,text):
-	    doi = self.read_pdf_doi(text)
-	    url = f"https://api.crossref.org/works/{doi}"
-	    r = requests.get(url)
-	    if r.status_code == 200:
-	        data=r.json()
-	        doi = data['message']['DOI']
-	        title = data['message']['title'][0]
-	        return title,doi
-	    else:
-	        return None,None
-	        print("Article not found.")
+		doi = self.read_pdf_doi(text)
+		url = f"https://api.crossref.org/works/{doi}"
+		r = requests.get(url)
+		if r.status_code == 200:
+			data=r.json()
+			doi = data['message']['DOI']
+			title = data['message']['title'][0]
+			return title,doi
+		else:
+			return None,None
+			print("Article not found.")
 
 
 
