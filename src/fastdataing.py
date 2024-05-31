@@ -242,13 +242,14 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=True,
 	fontweight="normal",loc="best",bbox_to_anchor=False,ncols=1,fontsize=22):
 	"""
-	set fig
+	set fig 
 	label: label="label", default label=False
 	xlabel: xlabel="X axis",
 	ylabel: ylabel="Y axis",
 	zlabel: zlabel="Z axis" for 3D axis,
 	fontweight: fontweight="normal",
 	loc: "best"
+	bbox_to_anchor: position of legend, (0.5, 0.5), default=False,
 	ncols = 1
 	fontsize: fontsize = 22
 	"""
