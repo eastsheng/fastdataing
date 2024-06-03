@@ -8,3 +8,7 @@ src/fastdataing.egg-info/SOURCES.txt
 src/fastdataing.egg-info/dependency_links.txt
 src/fastdataing.egg-info/requires.txt
 src/fastdataing.egg-info/top_level.txt
+src/fd_utils/__init__.py
+src/fd_utils/figure.py
+src/fd_utils/files.py
+src/fd_utils/paper.py
