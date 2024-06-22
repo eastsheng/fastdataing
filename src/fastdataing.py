@@ -379,11 +379,11 @@ def plot_bars(ax,x,height, width=0.8, bottom=None,align='center',color='b',
 	if label == False:
 		ax.bar(x,height,width=width,bottom=None,align=align,color=color,linewidth=linewidth,
 			tick_label=None,xerr=xerr, yerr=yerr,ecolor=ecolor,capsize=capsize,hatch=hatch,
-			edgecolor=edgecolor)
+			edgecolor=edgecolor,alpha=alpha)
 	else:
 		ax.bar(x,height,width=width,bottom=None,align=align,color=color,linewidth=linewidth,
 			tick_label=None,xerr=xerr, yerr=yerr,ecolor=ecolor,capsize=capsize,hatch=hatch,
-			edgecolor=edgecolor,label=label)
+			edgecolor=edgecolor,label=label,alpha=alpha)
 	if xlabel==False:
 		pass
 	else:
