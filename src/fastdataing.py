@@ -291,11 +291,11 @@ def plot_scatter(ax,x,y,s=None,marker="o",color="r",linewidths=1.5,edgecolors='f
 	else:
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
-	ax.patch.set_alpha(0) 
-	if bbox_to_anchor:
-		ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
-	else:
-		ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	# ax.patch.set_alpha(0) 
+	# if bbox_to_anchor:
+	# 	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	# else:
+	# 	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
 
 	return
 
@@ -338,11 +338,11 @@ def plot_dotsline(ax,x,y,yerr=None, fmt='',markersize=12,markeredgecolor=None,bb
 	else:
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
-	ax.patch.set_alpha(0) 
-	if bbox_to_anchor:
-		ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
-	else:
-		ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	# ax.patch.set_alpha(0) 
+	# if bbox_to_anchor:
+	# 	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	# else:
+	# 	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
 	return
 
 
@@ -393,11 +393,11 @@ def plot_bars(ax,x,height, width=0.8, bottom=None,align='center',color='b',
 	else:
 		ax.set_ylabel(ylabel,fontweight=fontweight,fontsize=fontsize)
 
-	ax.patch.set_alpha(0) 
-	if bbox_to_anchor:
-		ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
-	else:
-		ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
+	# ax.patch.set_alpha(0) 
+	# if bbox_to_anchor:
+	# 	ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor).get_frame().set_alpha(0)
+	# else:
+	# 	ax.legend(loc=loc,ncols=ncols).get_frame().set_alpha(0)
 	return
 
 
