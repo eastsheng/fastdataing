@@ -136,13 +136,13 @@ def average_xy(x,y,window_size=10):
 	return avg_x[:-1], avg_y[:-1]
 
 
-def add_fig(figsize=(8,6),size=18,inout="in",family='Times New Roman',fontset='stix'):
+def add_fig(figsize=(8,6),fontsize=20,inout="in",family='Times New Roman',fontset='stix'):
 	"""
 	add a canvas, return ax
 	figsize=(10,8),
-	size=22
+	fontsize=22
 	"""
-	plt.rc('font', family=family, size=size)
+	plt.rc('font', family=family, size=fontsize)
 	plt.rcParams['mathtext.fontset'] = fontset
 	plt.rcParams['xtick.direction'] = inout
 	plt.rcParams['ytick.direction'] = inout
