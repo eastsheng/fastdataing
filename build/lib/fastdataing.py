@@ -245,9 +245,9 @@ def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=Tr
 	else:
 		ax.set_ylabel(zlabel,fontweight=fontweight,fontsize=fontsize)
 	if bbox_to_anchor:
-		leg = ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor)
+		leg = ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor,fontsize=fontsize)
 	else:
-		leg = ax.legend(loc=loc,ncols=ncols)
+		leg = ax.legend(loc=loc,ncols=ncols,fontsize=fontsize)
 
 	if transparent:
 
