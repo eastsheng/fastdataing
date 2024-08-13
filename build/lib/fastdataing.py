@@ -218,7 +218,8 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 	return ax
 
 def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=True,
-	fontweight="normal",loc="best",bbox_to_anchor=False,ncols=1,fontsize=22):
+	fontweight="normal",loc="best",bbox_to_anchor=False,ncols=1,fontsize=22,
+	handlelength=False):
 	"""
 	set fig 
 	label: label="label", default label=False
@@ -230,6 +231,7 @@ def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=Tr
 	bbox_to_anchor: position of legend, (0.5, 0.5), default=False,
 	ncols = 1
 	fontsize: fontsize = 22
+	handlelength: handlelength = 1.5
 	"""
 	if xlabel==False:
 		pass
@@ -245,9 +247,9 @@ def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=Tr
 	else:
 		ax.set_ylabel(zlabel,fontweight=fontweight,fontsize=fontsize)
 	if bbox_to_anchor:
-		leg = ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor,fontsize=fontsize)
+		leg = ax.legend(loc=loc,ncols=ncols,bbox_to_anchor=bbox_to_anchor,fontsize=fontsize,handlelength=handlelength)
 	else:
-		leg = ax.legend(loc=loc,ncols=ncols,fontsize=fontsize)
+		leg = ax.legend(loc=loc,ncols=ncols,fontsize=fontsize,handlelength=handlelength)
 
 	if transparent:
 
