@@ -219,7 +219,7 @@ def plot_fig(ax,x,y,label=False,linewidth=1,
 
 def set_fig(ax,label=False,xlabel=False,ylabel=False,zlabel=False,transparent=True,
 	fontweight="normal",loc="best",bbox_to_anchor=False,ncols=1,fontsize=22,
-	handlelength=False):
+	handlelength=1.8):
 	"""
 	set fig 
 	label: label="label", default label=False
