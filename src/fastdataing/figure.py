@@ -7,9 +7,11 @@ from tqdm import tqdm
 from scipy import ndimage
 from reportlab.pdfgen import canvas
 import sys
-sys.path.append("..") 
-from fastdataing import print_line, add_fig, add_ax
-import matplotlib.pyplot as plt
+from print_line import print_line
+
+# from fastdataing import add_fig, add_ax
+
+# import matplotlib.pyplot as plt
 
 class Figure(object):
 	"""Figure class: picture processing"""
@@ -70,41 +72,41 @@ class Figure(object):
 		print("\n>>> binary2dxf successfully !\n")
 		return
 
-	@print_line
-	def figZoom(self,picture,nzoom,zoom_picture=False,transparent=True):
-		"""
-		zoom a picture
-		picture: a picture file
-		nzoom: times of zoom
-		zoom_picture: new zoomed picture
-		transparent: transparent
-		"""
-		fig = add_fig(figsize=(6,6))
-		ax = add_ax(fig,subplot=(111))
+	# @print_line
+	# def figZoom(self,picture,nzoom,zoom_picture=False,transparent=True):
+	# 	"""
+	# 	zoom a picture
+	# 	picture: a picture file
+	# 	nzoom: times of zoom
+	# 	zoom_picture: new zoomed picture
+	# 	transparent: transparent
+	# 	"""
+	# 	fig = add_fig(figsize=(6,6))
+	# 	ax = add_ax(fig,subplot=(111))
 
-		image = Image.open(picture)
-		fig_array = np.array(image)
-		data0 = fig_array[:,:,0]
-		data1 = fig_array[:,:,1]
-		data2 = fig_array[:,:,2]
-		zoom_array0 = ndimage.zoom(data0, nzoom, order=3)
-		zoom_array1 = ndimage.zoom(data1, nzoom, order=3)
-		zoom_array2 = ndimage.zoom(data2, nzoom, order=3)
-		zoom_array = np.stack([zoom_array0,zoom_array1,zoom_array2],axis=2)
-		ax.imshow(zoom_array,vmin=0, vmax=255)
-		ax.set_xticks([])
-		ax.set_yticks([])
-		ax.set_axis_off()
-		ax.patch.set_alpha(0) 
+	# 	image = Image.open(picture)
+	# 	fig_array = np.array(image)
+	# 	data0 = fig_array[:,:,0]
+	# 	data1 = fig_array[:,:,1]
+	# 	data2 = fig_array[:,:,2]
+	# 	zoom_array0 = ndimage.zoom(data0, nzoom, order=3)
+	# 	zoom_array1 = ndimage.zoom(data1, nzoom, order=3)
+	# 	zoom_array2 = ndimage.zoom(data2, nzoom, order=3)
+	# 	zoom_array = np.stack([zoom_array0,zoom_array1,zoom_array2],axis=2)
+	# 	ax.imshow(zoom_array,vmin=0, vmax=255)
+	# 	ax.set_xticks([])
+	# 	ax.set_yticks([])
+	# 	ax.set_axis_off()
+	# 	ax.patch.set_alpha(0) 
 
-		if zoom_picture:
-			plt.savefig(zoom_picture, dpi=300,transparent=transparent)
-		else:
-			plt.savefig(picture.split(".")[0]+"_zoom.png", dpi=300,
-				transparent=transparent)
+	# 	if zoom_picture:
+	# 		plt.savefig(zoom_picture, dpi=300,transparent=transparent)
+	# 	else:
+	# 		plt.savefig(picture.split(".")[0]+"_zoom.png", dpi=300,
+	# 			transparent=transparent)
 		
-		plt.show()
-		return
+	# 	plt.show()
+	# 	return
 
 
 	@print_line

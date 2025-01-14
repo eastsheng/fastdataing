@@ -5,7 +5,7 @@ import re
 import requests
 import PyPDF2
 import sys
-sys.path.append("..") 
+# sys.path.append("..") 
 from fastdataing import print_line
 
 class Papers(object):

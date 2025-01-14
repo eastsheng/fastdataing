@@ -6,30 +6,15 @@ from scipy.signal import savgol_filter
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-import functools
-
-def __version__():
-	version = "1.0.5"
-	return version
+import json
 
 def print_version():
-	version = __version__()
-	print("𝒇𝒂𝒔𝒕𝒅𝒂𝒕𝒂𝒊𝒏𝒈-"+version)
+	with open('./__init__.py', 'r', encoding='utf-8') as f:
+		data = json.load(f)
+	version = data["version"]
+	print(f"𝒇𝒂𝒔𝒕𝒅𝒂𝒕𝒂𝒊𝒏𝒈-{version}")
 	print("\t>>> A collection of frequently employed functions!")
 	return
-
-def print_line(func):
-	@functools.wraps(func)
-	def wrapper(*args, **kwargs):
-		print(21*"-"," Program Start ",21*"-")
-		start_time = time.time()
-		results = func(*args, **kwargs)
-		end_time = time.time()
-		elapsed_time = end_time - start_time
-		print(20*"-","Run time:",round(elapsed_time,2),"s ",20*"-")
-		return results
-	return wrapper
-
 
 def cal_diff_coeff(t,msd):
 	"""line fitting"""
@@ -407,5 +392,9 @@ def plot_bars(ax,x,height, width=0.8, bottom=None,align='center',color='b',
 
 if __name__ == "__main__":
 	print_version()
+	# from fastdataing.formula2mass import MoleculeMass
+	# m = MoleculeMass()
+	# mw = m.MolMass("C20H42")
+	# print(mw)
 
 
